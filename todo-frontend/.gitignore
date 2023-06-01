@@ -1,0 +1,53 @@
+*.env
+*.pyc
+*.xml
+*.idea/
+# Default ignored files
+/shelf/
+/workspace.xml
+
+
+
+##############################
+## ML-AI
+##############################
+.ipynb_checkpoints
+datasets/
+#*.csv
+reports/
+
+##############################
+## Python & Django
+##############################
+*.pyc
+venv_*/
+venv/
+venv_*/
+venv_wp/
+venv*/
+staticfiles/
+temp_media/
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
