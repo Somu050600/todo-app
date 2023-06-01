@@ -1,0 +1,117 @@
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFDEE9;
+  background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+}
+
+#task-container {
+  min-width: 400px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  outline: 1px solid;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px rgb(214, 214, 214);
+  background-color: white;
+}
+.signout-btn{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  margin: 20px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 10px rgb(148, 148, 148);
+  cursor: pointer;
+}
+
+#form-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background-color: aquamarine;
+  box-shadow: 5px 5px 5px rgb(214, 214, 214);
+}
+
+form {
+  width: 100%;
+}
+
+.flex-wrapper {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex-wrapper #title {
+  margin: 5px 0px;
+  width: 100%;
+  padding-left: 10px;
+  height: 35px;
+  border-radius: 0;
+  border: 1px solid rgb(121, 121, 121);
+  outline: none;
+}
+
+.flex-wrapper #submit {
+  padding: 0 10px;
+  margin: 5px 5px;
+  height: 35px;
+  border-radius: 0;
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+
+#list-wrapper{
+  width: 100%;
+  cursor: pointer;
+}
+
+.task-item{
+  border-top: 1px solid rgb(188, 188, 188);
+}
+
+.edit-btn{
+  padding: 5px 10px;
+  margin: 0 10px;
+  border-radius: 0;
+  border: none;
+  color: white;
+  font-weight: 600;
+  background-color: rgb(0, 115, 182);
+  cursor: pointer;
+}
+
+.delete-btn{
+  padding: 5px 10px;
+  margin: 0 10px;
+  border-radius: 0;
+  font-size: 10px;
+  color: white;
+  font-weight: 600;
+  background-color: rgb(255, 28, 28);
+  cursor: pointer;
+}
