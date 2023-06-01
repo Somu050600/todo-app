@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { googleLogout } from '@react-oauth/google';
 import './App.css';
 
 function App() {
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const profilePhoto = queryParams.get('photo');
+  const name = queryParams.get('name');
 
   const [todoList, setTodoList] = useState([]);
   const [activeItem, setActiveItem] = useState({
@@ -36,9 +40,9 @@ function App() {
   };
 
   const signoutHandler = () => {
-      localStorage.clear();
-      googleLogout();
-      navigate('/');
+    localStorage.clear();
+    googleLogout();
+    navigate('/');
   }
   const fetchTasks = () => {
     console.log('Fetching...');
@@ -135,25 +139,29 @@ function App() {
   return (
     <div className="container">
       <div id="task-container">
+        <div className='profile-div'>
+          <img src={profilePhoto} alt="Profile" />
+          <span>{name}</span>
+        </div>
         <button onClick={signoutHandler} className='signout-btn'>Sign out</button>
         <div id="form-wrapper">
           <form onSubmit={handleSubmit} id="form">
             <div className="flex-wrapper">
-                <input
-                  onChange={handleChange}
-                  className="form-control"
-                  id="title"
-                  value={activeItem.title}
-                  type="text"
-                  name="title"
-                  placeholder="Add task.."
-                />
-                <input
-                  id="submit"
-                  className="btn"
-                  type="submit"
-                  name="Add"
-                />
+              <input
+                onChange={handleChange}
+                className="form-control"
+                id="title"
+                value={activeItem.title}
+                type="text"
+                name="title"
+                placeholder="Add task.."
+              />
+              <input
+                id="submit"
+                className="btn"
+                type="submit"
+                name="Add"
+              />
             </div>
           </form>
         </div>
