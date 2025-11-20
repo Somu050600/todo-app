@@ -31,7 +31,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-!6w37v3fc&g(#ujan5b%n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
+# Allow Render.com domains
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -145,6 +149,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
 
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://todo-app-frontend-somu.vercel.app",
+]
+
+# CSRF Trusted Origins (required for POST/PUT/DELETE from frontend)
+CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "https://todo-app-frontend-somu.vercel.app",
