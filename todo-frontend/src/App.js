@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from "react-router-dom";
 import { googleLogout } from '@react-oauth/google';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from "react-router-dom";
 import './App.css';
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
   const fetchTasks = () => {
     console.log('Fetching...');
 
-    fetch('http://127.0.0.1:8000/api/task-list/')
+    fetch(`${process.env.REACT_APP_API_URL}/api/task-list/`)
       .then((response) => response.json())
       .then((data) => setTodoList(data));
   };
@@ -70,10 +70,10 @@ function App() {
 
     var csrftoken = getCookie('csrftoken');
 
-    var url = 'http://127.0.0.1:8000/api/task-create/';
+    var url = `${process.env.REACT_APP_API_URL}/api/task-create/`;
 
     if (editing === true) {
-      url = `http://127.0.0.1:8000/api/task-update/${activeItem.id}/`;
+      url = `${process.env.REACT_APP_API_URL}/api/task-update/${activeItem.id}/`;
       setEditing(false);
     }
 
@@ -106,7 +106,7 @@ function App() {
   const deleteItem = (task) => {
     var csrftoken = getCookie('csrftoken');
 
-    fetch(`http://127.0.0.1:8000/api/task-delete/${task.id}/`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/task-delete/${task.id}/`, {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
@@ -120,7 +120,7 @@ function App() {
   const strikeUnstrike = (task) => {
     task.completed = !task.completed;
     var csrftoken = getCookie('csrftoken');
-    var url = `http://127.0.0.1:8000/api/task-update/${task.id}/`;
+    var url = `${process.env.REACT_APP_API_URL}/api/task-update/${task.id}/`;
 
     fetch(url, {
       method: 'POST',
