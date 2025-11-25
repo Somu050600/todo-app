@@ -34,11 +34,6 @@ DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 # Allowed hosts configuration
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
-# Support for various hosting platforms
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-
 # PythonAnywhere support
 PYTHONANYWHERE_DOMAIN = os.environ.get('PYTHONANYWHERE_DOMAIN')
 if PYTHONANYWHERE_DOMAIN:
@@ -100,7 +95,7 @@ WSGI_APPLICATION = 'todo_backend.wsgi.application'
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
 if DATABASE_URL:
-    # Use DATABASE_URL if provided (Render, Heroku, etc.)
+    # Use DATABASE_URL if provided (PostgreSQL, etc.)
     DATABASES = {
         'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     }
@@ -230,8 +225,8 @@ CORS_ALLOW_METHODS = [
 
 # Security settings for production
 if not DEBUG:
-    # Note: SECURE_SSL_REDIRECT is handled by PythonAnywhere/Render at proxy level
-    # Setting it True here can cause redirect loops on some platforms
+    # Note: SECURE_SSL_REDIRECT is handled by PythonAnywhere at proxy level
+    # Setting it True here can cause redirect loops
     SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'False') == 'True'
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True

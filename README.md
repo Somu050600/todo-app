@@ -1,190 +1,239 @@
-# Todo App - Full Stack Deployment Guide
+# 📝 Todo App
 
-A full-stack todo application with React frontend and Django backend.
+A modern, full-stack Kanban-style todo application with Google OAuth authentication, dark mode support, and real-time task management.
 
-## 🌐 Live URLs
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
+![Node](https://img.shields.io/badge/Node.js-22-339933?logo=node.js)
+![Django](https://img.shields.io/badge/Django-5.2-092E20?logo=django)
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python)
 
-- **Frontend**: https://todo-app-frontend-somu.vercel.app
-- **Backend**: _Deploy to get your URL_ (e.g., `https://todo-backend-xxxx.onrender.com`)
+## ✨ Features
+
+### Task Management
+
+- 📋 **Kanban Board** - Organize tasks in customizable columns
+- ➕ **Create Tasks** - Add tasks to any column
+- ✏️ **Edit Tasks** - Inline editing with click-to-edit
+- ✅ **Mark Complete** - Toggle task completion status
+- 🗑️ **Delete Tasks** - Remove tasks you no longer need
+
+### Column Management
+
+- 📁 **Custom Columns** - Create columns like "To Do", "In Progress", "Done"
+- ✏️ **Rename Columns** - Edit column titles inline
+- 🗑️ **Delete Columns** - Remove columns (and their tasks)
+
+### User Experience
+
+- 🌙 **Dark Mode** - Toggle between light and dark themes
+- 🔐 **Google OAuth** - Secure sign-in with Google account
+- 💾 **Persistent Storage** - Data saved to database
+- 📱 **Responsive Design** - Works on desktop and mobile
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+| Technology   | Purpose             |
+| ------------ | ------------------- |
+| React 18     | UI Framework        |
+| React Router | Navigation          |
+| Google OAuth | Authentication      |
+| CSS3         | Styling & Dark Mode |
+
+### Backend
+
+| Technology            | Purpose                |
+| --------------------- | ---------------------- |
+| Django 5.2            | Web Framework          |
+| Django REST Framework | API                    |
+| MySQL                 | Database (Production)  |
+| SQLite                | Database (Development) |
+
+## 🌐 Live Demo
+
+| Component       | URL                                        |
+| --------------- | ------------------------------------------ |
+| **Frontend**    | https://todo-app-frontend-somu.vercel.app  |
+| **Backend API** | https://somu050600.pythonanywhere.com/api/ |
 
 ## 📁 Project Structure
 
 ```
 todo-app/
-├── todo-frontend/          # React frontend (deployed on Vercel)
+├── todo-frontend/          # React Frontend
 │   ├── src/
-│   │   └── App.js         # Uses REACT_APP_API_URL env variable
+│   │   ├── App.js         # Main application component
+│   │   ├── App.css        # Styles including dark mode
+│   │   └── index.js       # Entry point
 │   └── package.json
 │
-├── todo_backend/           # Django backend (deploy to Render)
-│   ├── todo/              # Django app
+├── todo_backend/           # Django Backend
+│   ├── todo/              # Main Django app
+│   │   ├── models.py      # Column & Task models
+│   │   ├── views.py       # API endpoints
+│   │   ├── serializers.py # DRF serializers
+│   │   └── urls.py        # URL routing
 │   ├── todo_backend/      # Django project settings
-│   ├── requirements.txt   # Python dependencies
-│   ├── build.sh          # Render build script
-│   ├── render.yaml       # Render config (optional)
-│   └── manage.py
+│   │   └── settings.py    # Configuration
+│   └── requirements.txt   # Python dependencies
 │
-├── CONNECT_FRONTEND_BACKEND.md   # Connection guide
-└── README.md             # This file
+├── deploy.sh              # PythonAnywhere deploy script
+└── README.md              # This file
 ```
 
-## 🚀 Deployment Status
+## 🚀 Getting Started
 
-### Frontend ✅
+### Prerequisites
 
-- [x] Deployed on Vercel
-- [x] URL: https://todo-app-frontend-somu.vercel.app
-- [ ] Environment variable `REACT_APP_API_URL` needs to be added (after backend deployment)
+- Node.js 22+
+- Python 3.11+
+- Git
 
-### Backend ⏳
+### Local Development
 
-- [ ] Deploy to Render
-- [ ] PostgreSQL database setup
-- [ ] Connect to frontend
+#### 1. Clone the repository
 
-## 📚 Documentation
+```bash
+git clone https://github.com/YOUR_USERNAME/todo-app.git
+cd todo-app
+```
 
-### Quick Start (Recommended)
-
-👉 **[QUICK_START.md](todo_backend/QUICK_START.md)** - Deploy in 5 steps (~10 minutes)
-
-### Detailed Guides
-
-- **[DEPLOYMENT.md](todo_backend/DEPLOYMENT.md)** - Complete backend deployment guide
-- **[CONNECT_FRONTEND_BACKEND.md](CONNECT_FRONTEND_BACKEND.md)** - Connect Vercel frontend to Render backend
-
-## 🛠️ Technology Stack
-
-### Frontend
-
-- React
-- React Router
-- Google OAuth
-- CSS3 (Dark Mode support)
-
-### Backend
-
-- Django 5.2.8
-- Django REST Framework
-- PostgreSQL (production)
-- SQLite (development)
-- django-cors-headers
-
-## 💻 Local Development
-
-### Backend Setup
+#### 2. Set up Backend
 
 ```bash
 cd todo_backend
+
+# Create virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Run migrations
 python manage.py migrate
+
+# Start server
 python manage.py runserver
 ```
 
-### Frontend Setup
+#### 3. Set up Frontend
 
 ```bash
 cd todo-frontend
+
+# Install dependencies
 npm install
+
+# Create .env.local file
+echo "REACT_APP_API_URL=http://localhost:8000" > .env.local
+
+# Start development server
 npm start
 ```
 
-## 🔧 Configuration Files Created
+#### 4. Open in browser
 
-All necessary files for Render deployment have been created:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000/api/
 
-- ✅ `todo_backend/requirements.txt` - Python dependencies
-- ✅ `todo_backend/build.sh` - Build script for Render
-- ✅ `todo_backend/render.yaml` - Render Blueprint config
-- ✅ `todo_backend/.gitignore` - Git ignore rules
-- ✅ `todo_backend/todo_backend/settings.py` - Updated with:
-  - Environment variables support
-  - PostgreSQL configuration
-  - CORS settings for your Vercel frontend
-  - Production security settings
-  - WhiteNoise for static files
+## 📡 API Endpoints
 
-## 🔐 Environment Variables
+| Method | Endpoint                   | Description                   |
+| ------ | -------------------------- | ----------------------------- |
+| GET    | `/api/`                    | API overview                  |
+| GET    | `/api/columns/`            | List all columns with tasks   |
+| POST   | `/api/column-create/`      | Create a new column           |
+| PUT    | `/api/column-update/<id>/` | Update column title           |
+| DELETE | `/api/column-delete/<id>/` | Delete a column               |
+| POST   | `/api/task-create/`        | Create a new task             |
+| PUT    | `/api/task-update/<id>/`   | Update task (title/completed) |
+| DELETE | `/api/task-delete/<id>/`   | Delete a task                 |
 
-### Backend (Render)
+## 🗃️ Data Models
 
-```bash
-DEBUG=False
-SECRET_KEY=<auto-generated>
-DATABASE_URL=<auto-generated by Render>
-ALLOWED_HOSTS=.onrender.com
-FRONTEND_URL=https://todo-app-frontend-somu.vercel.app
-PYTHON_VERSION=3.11.0
+### Column
+
+```python
+{
+    "id": 1,
+    "title": "To Do",
+    "order": 0,
+    "tasks": [...]
+}
 ```
+
+### Task
+
+```python
+{
+    "id": 1,
+    "title": "Buy groceries",
+    "completed": false,
+    "column": 1
+}
+```
+
+## 🚢 Deployment
 
 ### Frontend (Vercel)
 
-```bash
-REACT_APP_API_URL=https://your-backend-url.onrender.com
-```
+- Automatically deploys from GitHub
+- Environment variable: `REACT_APP_API_URL`
 
-## 📋 Next Steps
+### Backend (PythonAnywhere)
 
-1. **Deploy Backend**: Follow [QUICK_START.md](todo_backend/QUICK_START.md)
-2. **Connect Frontend**: Follow [CONNECT_FRONTEND_BACKEND.md](CONNECT_FRONTEND_BACKEND.md)
-3. **Test**: Verify all CRUD operations work
-4. **Monitor**: Check logs in Render dashboard
+See [PYTHONANYWHERE_DEPLOYMENT.md](todo_backend/PYTHONANYWHERE_DEPLOYMENT.md) for detailed instructions.
 
-## ⚠️ Important Notes
-
-### Free Tier Limitations
-
-- **Render**: Services sleep after 15 min inactivity (30-60s cold start)
-- **Database**: 90 days retention on free tier
-
-### Production Considerations
-
-- Backend automatically redeploys on git push to main
-- Database backups recommended for production
-- Consider upgrading to paid tier for better performance
-
-## 🐛 Troubleshooting
-
-**Backend not responding?**
+**Quick deploy after changes:**
 
 ```bash
-# Wake it up by visiting the URL directly
-curl https://your-backend-url.onrender.com/api/
+# On PythonAnywhere
+~/todo-app/deploy.sh
+# Then click "Reload" on Web tab
 ```
 
-**CORS errors?**
+## 🔧 Environment Variables
 
-- Check frontend URL is in `CORS_ALLOWED_ORIGINS`
-- Redeploy backend after changes
+### Frontend (.env.local)
 
-**Environment variables not working?**
-
-- Redeploy after adding variables
-- Check spelling (React: must start with `REACT_APP_`)
-
-## 📖 API Endpoints
-
+```bash
+REACT_APP_API_URL=http://localhost:8000
 ```
-GET    /api/                      - API overview
-GET    /api/columns/              - List all columns
-POST   /api/column-create/        - Create column
-PUT    /api/column-update/<id>/   - Update column
-DELETE /api/column-delete/<id>/   - Delete column
-POST   /api/task-create/          - Create task
-PUT    /api/task-update/<id>/     - Update task
-DELETE /api/task-delete/<id>/     - Delete task
+
+### Backend (.env)
+
+```bash
+DEBUG=False
+SECRET_KEY=your-secret-key
+MYSQL_DATABASE=your_database
+MYSQL_USER=your_username
+MYSQL_PASSWORD=your_password
+MYSQL_HOST=your_host
+PYTHONANYWHERE_DOMAIN=your_username
+FRONTEND_URL=https://your-frontend.vercel.app
 ```
 
 ## 🤝 Contributing
 
-This is a personal project, but feel free to fork and customize!
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-MIT
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👤 Author
+
+**Somu**
+
+- Frontend: [Vercel](https://todo-app-frontend-somu.vercel.app)
+- Backend: [PythonAnywhere](https://somu050600.pythonanywhere.com)
 
 ---
 
-**Ready to deploy?** Start with [QUICK_START.md](todo_backend/QUICK_START.md) 🚀
+⭐ Star this repo if you found it helpful!
